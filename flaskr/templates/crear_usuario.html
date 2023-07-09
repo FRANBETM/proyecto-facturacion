@@ -1,0 +1,63 @@
+{% extends "default.html" %}
+{% block title %}{{titulo}}{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<h3>{{ titulo }}</h3>
+  <form action="crear_usuario" method="post">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="tipo_documento">Tipo de Documento</label>
+        <select class="form-control" id="tipo_documento" name="tipo_documento">
+          <option value="dni">DNI</option>
+          <option value="pasaporte">Pasaporte</option>
+          <option value="ruc">RUC</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="numero_documento">Número de Documento</label>
+        <input type="text" class="form-control" id="numero_documento" name="numero_documento" placeholder="Número de Documento">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="direccion">Dirección</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="telefono">Teléfono</label>
+        <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="contrasena">Contraseña</label>
+        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="rol">Rol</label>
+        <select class="form-control" id="rol" name="rol">
+          <option value="admin">Administrador</option>
+          <option value="user">Usuario</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </form>
+{% endblock %}

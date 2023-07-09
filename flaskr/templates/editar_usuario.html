@@ -1,0 +1,66 @@
+{% extends "default.html" %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="alert alert-info">
+        <ul class="mb-0">
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% endwith %}
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ titulo }}</h3>
+        </div>
+        <div class="card-body">
+          <form action="/actualizar_usuario" method="post">
+            <input type="hidden" id="id" name="id" value="{{ usuario.id }}">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{ usuario.nombre }}">
+            </div>
+            <div class="form-group">
+              <label for="tipo_documento">Tipo de Documento</label>
+              <input type="text" class="form-control" id="tipo_documento" name="tipo_documento" placeholder="Tipo de Documento" value="{{ usuario.tipo_documento }}">
+            </div>
+            <div class="form-group">
+              <label for="numero_documento">Número de Documento</label>
+              <input type="text" class="form-control" id="numero_documento" name="numero_documento" placeholder="Número de Documento" value="{{ usuario.numero_documento }}">
+            </div>
+            <div class="form-group">
+              <label for="direccion">Dirección</label>
+              <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" value="{{ usuario.direccion }}">
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" value="{{ usuario.telefono }}">
+            </div>
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico" value="{{ usuario.email }}">
+            </div>
+            <div class="form-group">
+              <label for="contrasena">Contraseña</label>
+              <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña">
+            </div>
+            <div class="form-group">
+              <label for="rol">Rol</label>
+              <input type="text" class="form-control" id="rol" name="rol" placeholder="Rol" value="{{ usuario.rol }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Editar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

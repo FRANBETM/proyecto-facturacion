@@ -1,0 +1,25 @@
+{% extends "default.html" %}
+{% block title %}{{titulo}}{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<h3>{{ titulo }}</h3>
+  <form action="/actualizar_categoria" method="post">
+    <div class="form-row">
+      <input type="hidden" id="id" name="id" value={{ categoria[0] }}>
+      <div class="form-group col-md-4">
+        <label for="categoria">Categoria</label>
+        <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Categoría" value={{ categoria[1] }}>
+      </div>
+    </div>  
+    <button type="submit" class="btn btn-primary">Editar</button>
+  </form>
+{% endblock %}

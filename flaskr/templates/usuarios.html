@@ -1,0 +1,35 @@
+{% extends "default.html" %}
+{% block title %}{{titulo}}{% endblock %}
+
+{% block content %}
+    <h1>{{titulo}}</h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in lista_usuarios %}
+            <tr>
+                <td>{{usuario[0]}}</td>
+                <td>{{usuario[1]}}</td>
+                <td>{{usuario[2]}}</td>
+                <td>{{usuario[3]}}</td>
+                <td>
+                    <div class="d-flex justify-content-end">
+                        <div class="ml-auto">
+                            <button type="button" class="btn btn-info ml-2" onclick='location.href="/editar_usuario/{{ usuario[0]}}"'>Editar</button>
+                            <button type="button" class="btn btn-danger ml-2" onclick="confirmacion_borrado('{{usuario[0]}}', 'usuarios')">Borrar</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
